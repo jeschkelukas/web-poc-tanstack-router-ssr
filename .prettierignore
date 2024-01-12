@@ -1,0 +1,4 @@
+**/*.js
+**/*.less
+/node_modules/
+coverage
