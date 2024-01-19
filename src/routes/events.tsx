@@ -1,6 +1,5 @@
 import * as React from "react";
-import { FileRoute, Link, MatchRoute, Outlet } from "@tanstack/react-router";
-import { Spinner } from "../components/Spinner";
+import { FileRoute, Link, Outlet } from "@tanstack/react-router";
 
 export type ImageType = {
   id: string;
@@ -43,8 +42,6 @@ export const Route = new FileRoute('/events').createRoute({
       )
       .then((d) => d.events.slice(0, 20));
 
-    console.log("data", response);
-
     return response;
   },
   component: PostsComponent,
@@ -52,8 +49,6 @@ export const Route = new FileRoute('/events').createRoute({
 
 function PostsComponent() {
   const posts = Route.useLoaderData();
-
-  console.log("events", posts);
 
   return (
     <>

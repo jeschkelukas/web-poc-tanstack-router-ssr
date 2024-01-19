@@ -10,6 +10,8 @@ export async function createServer(
 ) {
   const app = express()
 
+  console.log('isProd: ', isProd)
+
   /**
    * @type {import('vite').ViteDevServer}
    */
@@ -44,12 +46,12 @@ export async function createServer(
     try {
       const url = req.originalUrl
 
-      if (url.includes('.')) {
-        console.warn(`${url} is not valid router path`)
-        res.status(404)
-        res.end(`${url} is not valid router path`)
-        return
-      }
+      // if (url.includes('.')) {
+      //   console.warn(`${url} is not valid router path`)
+      //   res.status(404)
+      //   res.end(`${url} is not valid router path`)
+      //   return
+      // }
 
       // Extract the head from vite's index transformation hook
       let viteHead = !isProd
@@ -68,7 +70,7 @@ export async function createServer(
         if (!isProd) {
           return vite.ssrLoadModule('/src/entry-server.tsx')
         } else {
-          return import('./dist/server/entry-server.tsx')
+          return import('./dist/server/entry-server.js')
         }
       })()
 
